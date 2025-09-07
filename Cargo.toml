@@ -1,0 +1,19 @@
+[package]
+name = "bpmn-domain-modeling"
+version = "0.1.0"
+edition = "2025"
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+quick-xml = { version = "0.31", features = ["serialize"] }
+petgraph = "0.6"
+chrono = "0.4"
+uuid = { version = "1.6", features = ["v4", "serde"] }
+thiserror = "1.0"
+anyhow = "1.0"
+tracing = "0.1"
+
+[dev-dependencies]
+proptest = "1.4"
+criterion = "0.5"
