@@ -72,7 +72,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "2261d10cca569e4643e526d8dc2e62e433cc8aba21ab764233731f8d369bf394"
 
 [[package]]
-name = "bpmn-engine"
+name = "bpmn-domain-modeling"
 version = "0.1.0"
 dependencies = [
  "anyhow",
