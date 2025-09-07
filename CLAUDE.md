@@ -21,6 +21,29 @@ BPMN 2.0仕様に準拠したビジネスプロセス実行エンジンをRust�
 2. **Parse, Don't Validate**: 検証ではなく型変換で安全性を保証
 3. **Explicit over Implicit**: 暗黙的な動作を避ける
 
+## ⚠️ 重要な教訓：関数型ドメインモデリングを決して妥協しない
+
+### 反省事例：Process設計での失敗
+**間違った実装**:
+```rust
+pub struct Process {
+    pub start_events: Vec<StartEvent>, // ❌ 空のプロセス作成可能
+}
+```
+
+**正しい実装**:
+```rust
+pub struct Process {
+    pub start_events: NonEmptyVec<StartEvent>, // ✅ 必ず1つ以上を型で保証
+}
+```
+
+### 教訓
+- **一時的な便利さに惑わされない**: `Vec`は書きやすいが型安全性を犠牲にする
+- **不正な状態を作れない設計**: BPMNプロセスは必ずStartEventが必要 → NonEmptyVecで保証
+- **コンパイル時チェック > 実行時チェック**: 型で制約を表現し、バグを事前に防ぐ
+- **原則に忠実であること**: 関数型ドメインモデリングの原則は必ず守る
+
 ## 🏗️ プロジェクト構造
 
 ```
